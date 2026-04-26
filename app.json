@@ -19,9 +19,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.mitchnode.reanimatedprototype",
-      "permissions": [
-        "HIGH_SAMPLING_RATE_SENSORS"
-      ]
+      "permissions": ["HIGH_SAMPLING_RATE_SENSORS"]
     },
     "web": {
       "output": "static",
@@ -47,7 +45,15 @@
           "motionPermission": "Allow $(PRODUCT_NAME) to access your device motion"
         }
       ],
-      "expo-audio"
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone.",
+          "recordAudioAndroid": true,
+          "enableBackgroundPlayback": true,
+          "enableBackgroundRecording": false
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
