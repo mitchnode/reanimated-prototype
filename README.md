@@ -12,4 +12,17 @@ npm run reset-project
 npx expo install react-native-reanimated react-native-worklets expo-sensors expo-audio
 ```
 
-##
+## Versions
+
+Tested with the following versions:
+
+```json
+"expo": "~54.0.33",
+"expo-audio": "~1.1.1",
+"expo-sensors": "~15.0.8",
+"react": "19.1.0",
+"react-native": "0.81.5",
+"react-native-gesture-handler": "~2.28.0",
+"react-native-reanimated": "~4.1.1",
+"react-native-worklets": "0.5.1"
+```
