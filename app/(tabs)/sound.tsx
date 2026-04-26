@@ -38,7 +38,7 @@ export default function Sound() {
     <View style={styles.container}>
       <Animated.View style={[styles.box, animatedStyle]} />
 
-      <Button title="toggle" onPress={startRecording} />
+      <Button title="Record" onPress={startRecording} />
       {recorder.isRecording ? (
         <>
           <Text>Recording</Text>
