@@ -3,7 +3,7 @@ import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
+  withSpring,
 } from "react-native-reanimated";
 
 export default function Index() {
@@ -16,7 +16,7 @@ export default function Index() {
 
   const style = useAnimatedStyle(() => {
     return {
-      width: withTiming(randomWidth.value, config),
+      width: withSpring(randomWidth.value, config),
     };
   });
 
