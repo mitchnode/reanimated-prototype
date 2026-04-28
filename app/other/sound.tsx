@@ -21,7 +21,7 @@ export default function Sound() {
   const recorderState = useAudioRecorderState(recorder, 100);
   const reduceMotion = useReducedMotion();
 
-  const multiplier = reduceMotion ? 0 : 3;
+  const multiplier = reduceMotion ? 0 : 30;
 
   const startRecording = async () => {
     await recorder.prepareToRecordAsync({ isMeteringEnabled: true });
@@ -31,7 +31,7 @@ export default function Sound() {
   const animatedStyle = useAnimatedStyle(() => {
     if (recorderState.metering != undefined) {
       return {
-        height: withSpring(10 - recorderState.metering * multiplier),
+        height: withSpring((recorderState.metering + 40) * multiplier),
       };
     }
     return {
