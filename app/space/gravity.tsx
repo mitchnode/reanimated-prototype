@@ -29,7 +29,7 @@ export default function Accel() {
         {
           translateY: withClamp(
             { min: -350, max: 350 },
-            withSpring(gravity.sensor.value.y * multiplier),
+            withSpring(0 - gravity.sensor.value.y * multiplier),
           ),
         },
         {
