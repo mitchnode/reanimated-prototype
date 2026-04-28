@@ -1,8 +1,8 @@
 import {
-    Accelerometer,
-    DeviceMotion,
-    Gyroscope,
-    Magnetometer,
+  Accelerometer,
+  DeviceMotion,
+  Gyroscope,
+  Magnetometer,
 } from "expo-sensors";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";

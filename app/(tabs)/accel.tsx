@@ -1,27 +1,27 @@
 import { StyleSheet, View } from "react-native";
 import Animated, {
-    Easing,
-    SensorType,
-    useAnimatedSensor,
-    useAnimatedStyle,
-    withSpring,
+  SensorType,
+  useAnimatedSensor,
+  useAnimatedStyle,
+  withSpring,
 } from "react-native-reanimated";
 
 export default function Accel() {
   const acceleromter = useAnimatedSensor(SensorType.ACCELEROMETER);
 
   const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
+    stiffness: 100,
+    damping: 10,
+    mass: 4,
   };
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      width: withSpring(100 + acceleromter.sensor.value.z * 50),
-      height: withSpring(100 + acceleromter.sensor.value.z * 50),
+      width: withSpring(100 + acceleromter.sensor.value.z * 50, config),
+      height: withSpring(100 + acceleromter.sensor.value.z * 50, config),
       transform: [
-        { translateY: withSpring(acceleromter.sensor.value.y * 50) },
-        { translateX: withSpring(acceleromter.sensor.value.x * 50) },
+        { translateY: withSpring(acceleromter.sensor.value.y * 50, config) },
+        { translateX: withSpring(acceleromter.sensor.value.x * 50, config) },
       ],
     };
   });

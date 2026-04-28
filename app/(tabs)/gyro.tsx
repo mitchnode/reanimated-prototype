@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native";
 import Animated, {
-    Easing,
-    SensorType,
-    useAnimatedSensor,
-    useAnimatedStyle,
-    withSpring,
+  Easing,
+  SensorType,
+  useAnimatedSensor,
+  useAnimatedStyle,
+  withTiming,
 } from "react-native-reanimated";
 
 export default function Gyro() {
@@ -12,14 +12,14 @@ export default function Gyro() {
 
   const config = {
     duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
+    easing: Easing.elastic(2),
   };
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
-        { translateY: withSpring(gyroscope.sensor.value.x * 50) },
-        { translateX: withSpring(gyroscope.sensor.value.y * 50) },
+        { translateY: withTiming(gyroscope.sensor.value.x * 50, config) },
+        { translateX: withTiming(gyroscope.sensor.value.y * 50, config) },
       ],
     };
   });

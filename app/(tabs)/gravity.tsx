@@ -1,10 +1,11 @@
 import { StyleSheet, View } from "react-native";
 import Animated, {
-    Easing,
-    SensorType,
-    useAnimatedSensor,
-    useAnimatedStyle,
-    withSpring,
+  Easing,
+  SensorType,
+  useAnimatedSensor,
+  useAnimatedStyle,
+  withClamp,
+  withSpring,
 } from "react-native-reanimated";
 
 export default function Accel() {
@@ -17,11 +18,21 @@ export default function Accel() {
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      width: withSpring(100 + gravity.sensor.value.z),
-      height: withSpring(100 + gravity.sensor.value.z),
+      width: withSpring(100 + gravity.sensor.value.z * 50),
+      height: withSpring(100 + gravity.sensor.value.z * 50),
       transform: [
-        { translateY: withSpring(gravity.sensor.value.y * 50) },
-        { translateX: withSpring(gravity.sensor.value.x * 50) },
+        {
+          translateY: withClamp(
+            { min: -350, max: 350 },
+            withSpring(gravity.sensor.value.y * 50),
+          ),
+        },
+        {
+          translateX: withClamp(
+            { min: -150, max: 150 },
+            withSpring(gravity.sensor.value.x * 50),
+          ),
+        },
       ],
     };
   });
