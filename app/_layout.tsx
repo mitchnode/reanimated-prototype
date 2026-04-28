@@ -22,7 +22,7 @@ export default function TabLayout() {
           }}
         />
       </Tabs>
-      <StatusBar style="dark" />
+      <StatusBar style="inverted" />
     </>
   );
 }
