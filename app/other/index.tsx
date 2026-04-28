@@ -1,4 +1,5 @@
-import { Button, StyleSheet, View } from "react-native";
+import { styles } from "@/theme/styles";
+import { Button, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -17,6 +18,7 @@ export default function Index() {
   const style = useAnimatedStyle(() => {
     return {
       width: withSpring(randomWidth.value, config),
+      height: withSpring(randomWidth.value, config),
     };
   });
 
@@ -24,7 +26,7 @@ export default function Index() {
     <View style={styles.container}>
       <Animated.View style={[styles.box, style]} />
       <Button
-        title="toggle"
+        title="Random"
         onPress={() => {
           randomWidth.value = Math.random() * 350;
         }}
@@ -32,17 +34,3 @@ export default function Index() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  box: {
-    width: 100,
-    height: 80,
-    backgroundColor: "black",
-    margin: 30,
-  },
-});

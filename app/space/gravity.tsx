@@ -1,4 +1,5 @@
-import { StyleSheet, View } from "react-native";
+import { styles } from "@/theme/styles";
+import { View } from "react-native";
 import Animated, {
   Easing,
   SensorType,
@@ -18,8 +19,8 @@ export default function Accel() {
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      width: withSpring(100 + gravity.sensor.value.z * 50),
-      height: withSpring(100 + gravity.sensor.value.z * 50),
+      width: withSpring(600 + gravity.sensor.value.z * 50),
+      height: withSpring(600 + gravity.sensor.value.z * 50),
       transform: [
         {
           translateY: withClamp(
@@ -43,17 +44,3 @@ export default function Accel() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  box: {
-    width: 100,
-    height: 100,
-    backgroundColor: "black",
-    margin: 30,
-  },
-});

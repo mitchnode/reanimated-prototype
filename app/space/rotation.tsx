@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { styles } from "@/theme/styles";
+import { View } from "react-native";
 import Animated, {
-    SensorType,
-    useAnimatedSensor,
-    useAnimatedStyle,
-    useDerivedValue,
-    withSpring,
+  SensorType,
+  useAnimatedSensor,
+  useAnimatedStyle,
+  useDerivedValue,
+  withSpring,
 } from "react-native-reanimated";
 
 export default function Accel() {
@@ -34,24 +35,6 @@ export default function Accel() {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.box, animatedStyle]} />
-      <Text>Magnetometer</Text>
-      <Animated.Text>Yaw: {rotValue.value.yaw}</Animated.Text>
-      <Animated.Text>Pitch: {rotValue.value.pitch}</Animated.Text>
-      <Animated.Text>Roll: {rotValue.value.roll}</Animated.Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  box: {
-    width: 100,
-    height: 100,
-    backgroundColor: "black",
-    margin: 30,
-  },
-});

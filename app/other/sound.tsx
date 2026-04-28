@@ -1,12 +1,13 @@
+import { styles } from "@/theme/styles";
 import {
-    RecordingPresets,
-    useAudioRecorder,
-    useAudioRecorderState,
+  RecordingPresets,
+  useAudioRecorder,
+  useAudioRecorderState,
 } from "expo-audio";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 import Animated, {
-    useAnimatedStyle,
-    withSpring,
+  useAnimatedStyle,
+  withSpring,
 } from "react-native-reanimated";
 
 export default function Sound() {
@@ -50,17 +51,3 @@ export default function Sound() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  box: {
-    width: 100,
-    height: 100,
-    backgroundColor: "black",
-    margin: 30,
-  },
-});
