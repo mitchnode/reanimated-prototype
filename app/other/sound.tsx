@@ -7,6 +7,7 @@ import {
 import { Button, Text, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
+  useReducedMotion,
   withSpring,
 } from "react-native-reanimated";
 
@@ -18,6 +19,9 @@ export default function Sound() {
     },
   );
   const recorderState = useAudioRecorderState(recorder, 100);
+  const reduceMotion = useReducedMotion();
+
+  const multiplier = reduceMotion ? 0 : 3;
 
   const startRecording = async () => {
     await recorder.prepareToRecordAsync({ isMeteringEnabled: true });
@@ -27,7 +31,7 @@ export default function Sound() {
   const animatedStyle = useAnimatedStyle(() => {
     if (recorderState.metering != undefined) {
       return {
-        height: withSpring(10 - recorderState.metering * 3),
+        height: withSpring(10 - recorderState.metering * multiplier),
       };
     }
     return {

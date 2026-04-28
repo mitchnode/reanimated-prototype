@@ -1,25 +1,23 @@
 import { styles } from "@/theme/styles";
 import { View } from "react-native";
 import Animated, {
-  Easing,
   SensorType,
   useAnimatedSensor,
   useAnimatedStyle,
-  withSpring,
+  useReducedMotion,
+  withSpring
 } from "react-native-reanimated";
 
 export default function Magnetic() {
   const magnetic_field = useAnimatedSensor(SensorType.MAGNETIC_FIELD);
+  const reduceMotion = useReducedMotion();
 
-  const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
+  const multiplier = reduceMotion ? 0 : 3;
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      width: withSpring(100 + magnetic_field.sensor.value.z * 3),
-      height: withSpring(100 + magnetic_field.sensor.value.z * 3),
+      width: withSpring(100 + magnetic_field.sensor.value.z * multiplier),
+      height: withSpring(100 + magnetic_field.sensor.value.z * multiplier),
     };
   });
 

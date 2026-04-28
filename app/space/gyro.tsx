@@ -5,11 +5,15 @@ import Animated, {
   SensorType,
   useAnimatedSensor,
   useAnimatedStyle,
+  useReducedMotion,
   withTiming,
 } from "react-native-reanimated";
 
 export default function Gyro() {
   const gyroscope = useAnimatedSensor(SensorType.GYROSCOPE);
+  const reduceMotion = useReducedMotion();
+
+  const multiplier = reduceMotion ? 10 : 50;
 
   const config = {
     duration: 500,
@@ -19,8 +23,12 @@ export default function Gyro() {
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
-        { translateY: withTiming(gyroscope.sensor.value.x * 50, config) },
-        { translateX: withTiming(gyroscope.sensor.value.y * 50, config) },
+        {
+          translateY: withTiming(gyroscope.sensor.value.x * multiplier, config),
+        },
+        {
+          translateX: withTiming(gyroscope.sensor.value.y * multiplier, config),
+        },
       ],
     };
   });

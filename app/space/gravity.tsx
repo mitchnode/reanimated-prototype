@@ -5,12 +5,16 @@ import Animated, {
   SensorType,
   useAnimatedSensor,
   useAnimatedStyle,
+  useReducedMotion,
   withClamp,
   withSpring,
 } from "react-native-reanimated";
 
 export default function Accel() {
   const gravity = useAnimatedSensor(SensorType.GRAVITY);
+  const reduceMotion = useReducedMotion();
+
+  const multiplier = reduceMotion ? 10 : 50;
 
   const config = {
     duration: 500,
@@ -19,19 +23,19 @@ export default function Accel() {
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      width: withSpring(600 + gravity.sensor.value.z * 50),
-      height: withSpring(600 + gravity.sensor.value.z * 50),
+      width: withSpring(600 + gravity.sensor.value.z * multiplier),
+      height: withSpring(600 + gravity.sensor.value.z * multiplier),
       transform: [
         {
           translateY: withClamp(
             { min: -350, max: 350 },
-            withSpring(gravity.sensor.value.y * 50),
+            withSpring(gravity.sensor.value.y * multiplier),
           ),
         },
         {
           translateX: withClamp(
             { min: -150, max: 150 },
-            withSpring(gravity.sensor.value.x * 50),
+            withSpring(gravity.sensor.value.x * multiplier),
           ),
         },
       ],

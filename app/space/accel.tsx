@@ -4,11 +4,15 @@ import Animated, {
   SensorType,
   useAnimatedSensor,
   useAnimatedStyle,
+  useReducedMotion,
   withSpring,
 } from "react-native-reanimated";
 
 export default function Accel() {
   const acceleromter = useAnimatedSensor(SensorType.ACCELEROMETER);
+  const reduceMotion = useReducedMotion();
+
+  const multiplier = reduceMotion ? 10 : 50;
 
   const config = {
     stiffness: 100,
@@ -18,11 +22,24 @@ export default function Accel() {
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      width: withSpring(100 + acceleromter.sensor.value.z * 50, config),
-      height: withSpring(100 + acceleromter.sensor.value.z * 50, config),
+      width: withSpring(100 + acceleromter.sensor.value.z * multiplier, config),
+      height: withSpring(
+        100 + acceleromter.sensor.value.z * multiplier,
+        config,
+      ),
       transform: [
-        { translateY: withSpring(acceleromter.sensor.value.y * 50, config) },
-        { translateX: withSpring(acceleromter.sensor.value.x * 50, config) },
+        {
+          translateY: withSpring(
+            acceleromter.sensor.value.y * multiplier,
+            config,
+          ),
+        },
+        {
+          translateX: withSpring(
+            acceleromter.sensor.value.x * multiplier,
+            config,
+          ),
+        },
       ],
     };
   });

@@ -4,12 +4,15 @@ import Animated, {
   SensorType,
   useAnimatedSensor,
   useAnimatedStyle,
-  useDerivedValue,
-  withSpring,
+  useReducedMotion,
+  withSpring
 } from "react-native-reanimated";
 
 export default function Accel() {
   const rotation = useAnimatedSensor(SensorType.ROTATION);
+  const reduceMotion = useReducedMotion();
+
+  const multiplier = reduceMotion ? 2 : 20;
 
   const config = {
     stiffness: 100,
@@ -17,17 +20,23 @@ export default function Accel() {
     mass: 4,
   };
 
-  const rotValue = useDerivedValue(() => {
-    return rotation.sensor.value;
-  });
-
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      width: withSpring(100 + rotation.sensor.value.yaw * 20, config),
-      height: withSpring(100 + rotation.sensor.value.yaw * 20, config),
+      width: withSpring(100 + rotation.sensor.value.yaw * multiplier, config),
+      height: withSpring(100 + rotation.sensor.value.yaw * multiplier, config),
       transform: [
-        { translateY: withSpring(rotation.sensor.value.pitch * 200, config) },
-        { translateX: withSpring(rotation.sensor.value.roll * 50, config) },
+        {
+          translateY: withSpring(
+            rotation.sensor.value.pitch * multiplier * 10,
+            config,
+          ),
+        },
+        {
+          translateX: withSpring(
+            rotation.sensor.value.roll * multiplier * 2.5,
+            config,
+          ),
+        },
       ],
     };
   });
