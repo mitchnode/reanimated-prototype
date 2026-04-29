@@ -21,7 +21,7 @@ export default function RootLayout() {
           }}
         />
         <Tabs.Screen
-          name="space"
+          name="motion"
           options={{
             title: "Motion",
             tabBarIcon: ({ color }) => (
@@ -29,8 +29,17 @@ export default function RootLayout() {
             ),
           }}
         />
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "About",
+            tabBarIcon: ({ color }) => (
+              <FontAwesome name="info-circle" size={24} color={color} />
+            ),
+          }}
+        />
       </Tabs>
-      <StatusBar style="inverted" />
+      <StatusBar style="dark" />
     </>
   );
 }

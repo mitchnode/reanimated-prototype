@@ -7,7 +7,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 
-export default function Index() {
+export default function Press() {
   const randomWidth = useSharedValue(10);
 
   const config = {
