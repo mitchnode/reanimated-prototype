@@ -1,26 +1,25 @@
 import { styles } from "@/theme/styles";
 import { View } from "react-native";
 import Animated, {
-  Easing,
   SensorType,
   useAnimatedSensor,
   useAnimatedStyle,
   useReducedMotion,
   withClamp,
-  withSpring,
+  withSpring
 } from "react-native-reanimated";
 
 export default function Accel() {
+  // Create an Animated Sensor hook for gravity
   const gravity = useAnimatedSensor(SensorType.GRAVITY);
+
+  // Get the Reduce Motion system setting from the users device
   const reduceMotion = useReducedMotion();
 
+  // Set up multiplier base on reduceMotion setting
   const multiplier = reduceMotion ? 10 : 50;
 
-  const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
-
+  // Create an Animated Style to change the height, width, x position and y position of the red ball based on the accelerometer sensor with gravity
   const animatedStyle = useAnimatedStyle(() => {
     return {
       width: withSpring(600 + gravity.sensor.value.z * multiplier),

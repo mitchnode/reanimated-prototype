@@ -9,11 +9,13 @@ import { StyleSheet, Text, View } from "react-native";
 import Animated from "react-native-reanimated";
 
 export default function Sensors() {
+  // Set up State for all the sensors
   const [gyro, setGyroData] = useState({ x: 0, y: 0, z: 0 });
   const [acc, setAccData] = useState({ x: 0, y: 0, z: 0 });
   const [grav, setGravData] = useState({ x: 0, y: 0, z: 0 });
   const [mag, setMagData] = useState({ x: 0, y: 0, z: 0 });
 
+  // Add listeners to all sensors, returning the data to the States
   useEffect(() => {
     Gyroscope.setUpdateInterval(200);
     Gyroscope.addListener((gyroscopeData) => {

@@ -8,13 +8,16 @@ import Animated, {
 } from "react-native-reanimated";
 
 export default function Press() {
+  // Create a shared value to use for size
   const randomWidth = useSharedValue(10);
 
+  // Create configuration for the withSpring animation
   const config = {
     duration: 500,
     easing: Easing.bezier(0.5, 0.01, 0, 1),
   };
 
+  // Create an Animated Style to change the height and width of the red ball based on the randomWidth
   const style = useAnimatedStyle(() => {
     return {
       width: withSpring(randomWidth.value, config),

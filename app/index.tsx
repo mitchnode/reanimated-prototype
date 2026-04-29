@@ -3,6 +3,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 
+// About page to display packages and version information
 export default function Index() {
   return (
     <View style={styles.screen}>

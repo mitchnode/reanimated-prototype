@@ -5,15 +5,20 @@ import Animated, {
   useAnimatedSensor,
   useAnimatedStyle,
   useReducedMotion,
-  withSpring
+  withSpring,
 } from "react-native-reanimated";
 
 export default function Magnetic() {
+  // Create an Animated Sensor hook for the magnetic field sensor
   const magnetic_field = useAnimatedSensor(SensorType.MAGNETIC_FIELD);
+
+  // Get the Reduce Motion system setting from the users device
   const reduceMotion = useReducedMotion();
 
+  // Set up multiplier base on reduceMotion setting
   const multiplier = reduceMotion ? 0 : 3;
 
+  // Create an Animated Style to change the height and width of the red ball based on the magnetic field
   const animatedStyle = useAnimatedStyle(() => {
     return {
       width: withSpring(100 + magnetic_field.sensor.value.z * multiplier),

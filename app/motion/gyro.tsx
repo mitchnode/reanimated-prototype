@@ -10,16 +10,22 @@ import Animated, {
 } from "react-native-reanimated";
 
 export default function Gyro() {
+  // Create an Animated Sensor hook for the gyroscope
   const gyroscope = useAnimatedSensor(SensorType.GYROSCOPE);
+
+  // Get the Reduce Motion system setting from the users device
   const reduceMotion = useReducedMotion();
 
+  // Set up multiplier base on reduceMotion setting
   const multiplier = reduceMotion ? 10 : 50;
 
+  // Create configuration for the withTiming animation
   const config = {
     duration: 500,
     easing: Easing.elastic(2),
   };
 
+  // Create an Animated Style to change the x position and y position of the red ball based on the gryroscope
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
